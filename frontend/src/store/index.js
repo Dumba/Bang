@@ -11,9 +11,9 @@ export default new Vuex.Store({
     players: {
       pepa: {
         name: "pepa",
-        role: "bandita",
-        character: "Willie the Kid",
-        lives: 4,
+        role: "deputy",
+        character: "willy-the-kid",
+        hp: 4,
         cardInHand: [
           1, 2
         ],
@@ -23,11 +23,27 @@ export default new Vuex.Store({
       },
       karel: {
         name: "karel",
-        role: "sherif",
-        character: "Suzy",
-        lives: 4,
+        role: "sheriff",
+        character: "suzy-lafayette",
+        hp: 5,
         cardInHand: [ 2 ],
         cardOnDesk: [ 3 ]
+      },
+      josef: {
+        name: "josef",
+        role: "outlaw",
+        character: "pedro-ramirez",
+        hp: 2,
+        cardInHand: [],
+        cardOnDesk: [ 2 ]
+      },
+      jana: {
+        name: "jana",
+        role: "vice",
+        character: "vulture-sam",
+        hp: 1,
+        cardInHand: [],
+        cardOnDesk: [ 2 ]
       }
     },
     cardsOnDesk: [ 5 ],
@@ -118,7 +134,7 @@ export default new Vuex.Store({
       target.push(card);
     },
     changeLives: (state, payload) => { // count
-      state.players[state.login.name].lives += payload.count;
+      state.players[state.login.name].hp += payload.count;
     }
   },
   actions: {

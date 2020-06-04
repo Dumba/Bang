@@ -20,5 +20,10 @@ export default {
 </script>
 
 <style lang="sass">
+@import ../style
 
+.cardPlace
+  height: $cardPlaceHeight
+  margin: $gap
+  display: flex
 </style>

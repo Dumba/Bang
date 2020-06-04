@@ -2,7 +2,6 @@
   <div class="card">
     <img v-if="reverseSide" src="/cards/play-cards/back-playing.png" alt="card-background" />
     <img v-else :src="`/cards/play-cards/${card.type}.png`" :alt="card.type" />
-    {{ id }} - {{ reverseSide }}
   </div>
 </template>
 
@@ -23,5 +22,10 @@ export default {
 </script>
 
 <style lang="sass">
+@import ../style
 
+.card
+  height: $cardHeight
+  img
+    height: 100%
 </style>

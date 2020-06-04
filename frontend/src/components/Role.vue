@@ -1,6 +1,7 @@
 <template>
   <div class="role">
-    {{ show ? role : "Unknown" }}
+    <img v-if="show" :src="`/cards/roles/${player.role}.png`" :alt="player.role" />
+    <img v-else src="/cards/roles/back-role.png" alt="role" />
   </div>
 </template>
 
@@ -12,11 +13,18 @@ export default {
   },
   computed: {
     show() {
-      return this.$store.state.login.name == this.player.name;
-    },
-    role() {
-      return this.player.role;
+      return (this.$store.state.login.name == this.player.name) || (this.player.role == "sheriff");
     }
   }
 }
 </script>
+
+<style lang="sass">
+@import ../style
+
+.role
+  height: $cardHeight
+  place-self: center
+  img
+    height: 100%
+</style>
