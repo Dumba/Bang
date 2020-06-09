@@ -47,8 +47,8 @@ export default new Vuex.Store({
       }
     },
     cardsOnDesk: [ 5 ],
-    packOfCardsTake: [ 6 ],
-    packOfCardsLeave: [ 7 ],
+    packToTake: [ 6 ],
+    packToLeave: [ 7 ],
 
     // static
     cards: {
@@ -79,44 +79,6 @@ export default new Vuex.Store({
       7: {
         type: "diligenza",
         color: "4K"
-      }
-    },
-    characters: [
-      "Suzy",
-      "Willie the Kid"
-    ],
-    roles: {
-      2: {
-        sherif: 1,
-        bandita: 1
-      },
-      3: {
-        sherif: 1,
-        bandita: 1,
-        odpadlík: 1
-      },
-      4: {
-        sherif: 1,
-        bandita: 2,
-        odpadlík: 1
-      },
-      5: {
-        sherif: 1,
-        bandita: 2,
-        odpadlík: 1,
-        vice: 1
-      },
-      6: {
-        sherif: 1,
-        bandita: 3,
-        odpadlík: 1,
-        vice: 1
-      },
-      7: {
-        sherif: 1,
-        bandita: 3,
-        odpadlík: 1,
-        vice: 2
       }
     }
   },

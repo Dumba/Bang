@@ -1,7 +1,7 @@
 <template>
   <div class="desk">
-    <PackOfCards :cards="packOfCardsTake" reverseSide="true" class="packToTake" />
-    <PackOfCards :cards="packOfCardsLeave" class="packToLeave" />
+    <PackOfCards :cards="packToTake" reverseSide="true" class="packToTake" />
+    <PackOfCards :cards="packToLeave" class="packToLeave" />
     <PlayerPlace v-for="(player, name, index) in players" :key="name" :player="player" :index="index" />
     <CardPlace :cards="cardsOnDesk" class="cardsOnDesk" />
   </div>
@@ -21,7 +21,7 @@ export default {
     PlayerPlace
   },
   computed: {
-    ...mapState(["packOfCardsTake", "packOfCardsLeave", "cardsOnDesk", "players"]),
+    ...mapState(["packToTake", "packToLeave", "cardsOnDesk", "players"]),
     playersCount() {
       return Object.Keys(this.players).length;
     }
