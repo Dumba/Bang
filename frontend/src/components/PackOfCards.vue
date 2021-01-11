@@ -1,6 +1,6 @@
 <template>
   <div class="packOfCards">
-    <Card v-if="cards.length > 0" :id="cards[0]" :reverseSide="reverseSide" />
+    <Card :name="firstCardName" :reverseSide="reverseSide" />
   </div>
 </template>
 
@@ -15,6 +15,14 @@ export default {
   props: {
     cards: {},
     reverseSide: { default: false }
+  },
+  computed: {
+    firstCardName() {
+      if (this.cards.length > 0)
+        return this.$store.state.cards[this.cards[0]].name;
+
+      return "_back";
+    }
   }
 }
 </script>

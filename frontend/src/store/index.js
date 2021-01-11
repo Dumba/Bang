@@ -5,79 +5,112 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    login: {
-      name: "pepa"
-    },
-    players: {
-      pepa: {
-        name: "pepa",
-        role: "deputy",
+    players: [
+      {
+        name: "0pepa",
+        role: "outlaw",
         character: "willy-the-kid",
-        hp: 4,
+        hp: 1,
         cardInHand: [
-          1, 2
+          1, 2, 4, 5, 6, 7
         ],
         cardOnDesk: [
-          3, 4
+          3, 2, 4, 5, 6, 7
         ]
       },
-      karel: {
-        name: "karel",
+      {
+        name: "1karel",
         role: "sheriff",
         character: "suzy-lafayette",
-        hp: 5,
-        cardInHand: [ 2 ],
-        cardOnDesk: [ 3 ]
+        hp: 3,
+        cardInHand: [ 
+          3, 2, 4, 5, 6, 7 ],
+        cardOnDesk: [ 
+          3, 2, 4, 5, 6, 7 ]
       },
-      josef: {
-        name: "josef",
+      {
+        name: "2josef",
         role: "outlaw",
         character: "pedro-ramirez",
         hp: 2,
-        cardInHand: [],
-        cardOnDesk: [ 2 ]
+        cardInHand: [
+          3, 2, 4, 5, 6, 7],
+        cardOnDesk: [ 
+          3, 2, 4, 5, 6, 7 ]
       },
-      jana: {
-        name: "jana",
+      {
+        name: "3jana",
         role: "vice",
         character: "vulture-sam",
         hp: 1,
-        cardInHand: [],
-        cardOnDesk: [ 2 ]
+        cardInHand: [
+          3, 2, 4, 5, 6, 7],
+        cardOnDesk: [ 
+          3, 2, 4, 5, 6, 7 ]
+      },
+      {
+        name: "4jana",
+        role: "vice",
+        character: "vulture-sam",
+        hp: 1,
+        cardInHand: [
+          3, 2, 4, 5, 6, 7],
+        cardOnDesk: [ 
+          3, 2, 4, 5, 6, 7 ]
+      },
+      {
+        name: "5jana",
+        role: "vice",
+        character: "vulture-sam",
+        hp: 1,
+        cardInHand: [
+          3, 2, 4, 5, 6, 7],
+        cardOnDesk: [ 
+          3, 2, 4, 5, 6, 7 ]
+      },
+      {
+        name: "6jana",
+        role: "vice",
+        character: "vulture-sam",
+        hp: 1,
+        cardInHand: [
+          3, 2, 4, 5, 6, 7],
+        cardOnDesk: [ 
+          3, 2, 4, 5, 6, 7 ]
       }
-    },
-    cardsOnDesk: [ 5 ],
-    packToTake: [ 6 ],
-    packToLeave: [ 7 ],
+    ],
+    cardsOnDesk: [ 3, 2, 4, 5, 6, 7 ],
+    packToTake: [ 6, 6, 6 ],
+    packToLeave: [ 6, 6, 6 ],
 
     // static
     cards: {
       1: {
-        type: "appaloosa",
+        name: "appaloosa",
         color: "4S"
       },
       2: {
-        type: "bang",
+        name: "bang",
         color: "5S"
       },
       3: {
-        type: "barrel",
+        name: "barrel",
         color: "4K"
       },
       4: {
-        type: "beer",
+        name: "beer",
         color: "4K"
       },
       5: {
-        type: "carabine",
+        name: "carabine",
         color: "4K"
       },
       6: {
-        type: "catbalou",
+        name: "catbalou",
         color: "4K"
       },
       7: {
-        type: "diligenza",
+        name: "diligenza",
         color: "4K"
       }
     }
@@ -96,7 +129,11 @@ export default new Vuex.Store({
       target.push(card);
     },
     changeLives: (state, payload) => { // count
-      state.players[state.login.name].hp += payload.count;
+      state.players[0].hp += payload.count;
+    },
+    stirCards: (state, payload) => { // cards
+      state.packToTake = payload.cards;
+      state.packToLeave = [];
     }
   },
   actions: {
@@ -107,6 +144,10 @@ export default new Vuex.Store({
     changeLives: (context, payload) => {
       // TODO: send
       context.commit('changeLives', payload);
+    },
+    stirCards: (context, payload) => {
+      // TODO: send
+      context.commit('stirCards', payload);
     }
   },
   modules: {

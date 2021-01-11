@@ -1,84 +1,49 @@
 <template>
-  <div class="playerPlace" :class="placeClass">
+  <div class="playerPlace">
     <div class="name">{{ player.name }}</div>
-    <Role :player="player" />
-    <Character :player="player" />
-    <CardPlace :cards="player.cardInHand" class="inHand" :reverseSide="!isMe" />
-    <CardPlace :cards="player.cardOnDesk" class="onDesk" />
+    <Player :player="player" :isMe="isMe" />
+    <CardPlace :cards="player.cardInHand" :inHand="true" :reverseSide="!isMe" />
+    <CardPlace :cards="player.cardOnDesk" :inHand="false" />
   </div>
 </template>
 
 <script>
 import CardPlace from "./CardPlace";
-import Character from "./Character";
-import Role from "./Role";
+import Player from "./Player";
 
 export default {
   name: "PlayerPlace",
   components: {
     CardPlace,
-    Character,
-    Role
+    Player
   },
   props: {
-    player: {},
-    index: {}
+    player: { required: true },
+    index: { required: true }
   },
   computed: {
     isMe() {
-      return this.$store.state.login.name == this.player.name;
-    },
-    placeClass() {
-      const totalCount = Object.keys(this.$store.state.players).length;
-
-      switch (this.index)
-      {
-        case 0:
-          return "place-1 bottom";
-        case 1:
-          return totalCount < 5 ? "place-45 top" : "place-4 top";
-        case 2:
-          return totalCount < 6 ? "place-23 right" : "place-2 right";
-        case 3:
-          return totalCount < 7 ? "place-67 left" : "place-6 left";
-        case 4:
-          return "place-5 top";
-        case 5:
-          return "place-3 right";
-        case 6:
-          return "place-7 left";
-        default:
-          return "";
-      }
+      return this.index == 0;
     }
   }
 };
 </script>
 
 <style lang="sass">
-@import ../style
+@import ../constants
 
 .playerPlace
   display: grid
-  height: $playerPlaceHeight
-  width: 100%
-  grid-template-areas: "name name name" "role onDesk character" "role inHand character"
-  grid-template-columns: min-content 1fr $characterWith
-  &.top
-    transform: rotate(180deg)
-  &.right
-    transform: rotate(270deg)
-  &.left
-    transform: rotate(90deg)
-
+  grid-template-columns: min-content $cardPlaceWidth $cardPlaceWidth
+  grid-template-rows: min-content $cardHeight
+  grid-gap: $cardPlaceGap
+  &.me
+    grid-template-columns: min-content $myCardPlaceWidth $myCardPlaceWidth
+    grid-template-rows: min-content $myCardHeight
+  
   .name
-    grid-area: name
-  .role
-    grid-area: role
-  .character
-    grid-area: character
-  .onDesk
-    grid-area: onDesk
-  .inHand
-    grid-area: inHand
+    grid-row: 1
+    grid-column: 1 / 4
+    font-size: 40px
+    font-weight: bold
 </style>
